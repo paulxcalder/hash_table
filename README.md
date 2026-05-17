@@ -32,7 +32,10 @@
 gcc hash_djb2.c -o hash_table
 
 # Запуск
+# Powershell
 ./hash_table
+# Cmd
+hash_table
 ```
 
 Требования: компилятор GCC или Clang, стандарт C99.
