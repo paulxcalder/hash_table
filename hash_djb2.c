@@ -13,8 +13,8 @@ unsigned int capacity = 32;
 unsigned int table_size = 0;
 float load_factor = 0.6f;
 
-unsigned int rehash_count = 0;
-unsigned int collision_count = 0;
+//unsigned int rehash_count = 0;
+//unsigned int collision_count = 0;
 
 Item *rehash_table(Item *hash_table);
 
@@ -43,7 +43,7 @@ void free_table(Item *hash_table, unsigned int cap){
 }
 
 Item *put(Item *hash_table, const char *key, const int value){
-    char collision = 0;
+    //char collision = 0;
     int first_deleted = -1;
     unsigned int count = 0;
     unsigned int idx = djb2(key, strlen(key)) & (capacity - 1);
@@ -57,17 +57,17 @@ Item *put(Item *hash_table, const char *key, const int value){
         }
         else if(strcmp(hash_table[idx].key, key) == 0){
             hash_table[idx].value = value;
-            //printf("OK\n");
+            printf("OK\n");
             return hash_table;
         }
         
         idx = (idx + 1) & (capacity - 1);
-        collision = 1;
+        //collision = 1;
     }
 
-    if(collision){
+    /*if(collision){
         collision_count++;
-    }
+    }*/
     
     if(first_deleted != -1){
         idx = first_deleted;
@@ -89,7 +89,7 @@ Item *put(Item *hash_table, const char *key, const int value){
     hash_table[idx].deleted = 0;
     table_size++;
 
-    //printf("OK\n");
+    printf("OK\n");
 
     if(table_size > load_factor * capacity){
         return rehash_table(hash_table);
@@ -140,7 +140,7 @@ int delete(Item *hash_table, const char *key, char *found){
 }
 
 Item *rehash_table(Item *hash_table){
-    rehash_count++;
+    //rehash_count++;
     unsigned int old_cap = capacity;
     capacity <<= 1;
     
