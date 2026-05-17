@@ -29,7 +29,7 @@
 
 ```bash
 # Компиляция
-gcc -O2 -o hash_table hash_djb2.c
+gcc hash_djb2.c -o hash_table
 
 # Запуск
 ./hash_table
